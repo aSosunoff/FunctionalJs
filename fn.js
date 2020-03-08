@@ -30,6 +30,24 @@ const getWord5 = (arr) =>
     arr.filter(e => e.length > 5);
 
 /* 
+function process(str){
+    str = str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+
+    let arrWord = str.split(' ');
+
+    let countWord = arrWord.length;
+
+    let getWord5 = arrWord.filter(e => e.length > 5);
+
+    console.log('количество слов : \t\t\t\t', countWord);
+
+    console.log('только слова которые больше 5 символов : \t', getWord5);    
+}
+
+process(sourceStroke);
+ */
+
+/* 
 function process(str, getArrCallback, countWordCallback, removeSpecificSignCallback, getWord5Callback) {
     let arr = getArrCallback(removeSpecificSignCallback(str));
     console.log('количество слов : \t\t\t\t', countWordCallback(arr));
@@ -39,7 +57,8 @@ function process(str, getArrCallback, countWordCallback, removeSpecificSignCallb
 process(sourceStroke, getArr, countWord, removeSpecificSign, getWord5); 
 */
 
-const process2 = compose(
+
+const process = compose(
     x => x[1] ? (console.log('только слова которые больше 5 символов : \t', x[1]), x) : null,
     x => x[0] ? (console.log('количество слов : \t\t\t\t', x[0]), x) : null,
     [countWord, getWord5],
@@ -47,4 +66,4 @@ const process2 = compose(
     removeSpecificSign
 );
 
-process2(sourceStroke);
+process(sourceStroke); 
