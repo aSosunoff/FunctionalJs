@@ -17,6 +17,7 @@ const add10 = x => x + 10;
 */
 
 const compose = (...fn) => x => fn.reduceRight((res, f) => f(res), x);
+const compose2 = (...fn) => x => fn.reduceRight((res, f) => Array.isArray(f) ? f.map(x => x(res)) : f(res), x);
 
 const trace = x => { console.log(x); return x; };
 
