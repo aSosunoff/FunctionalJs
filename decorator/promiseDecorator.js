@@ -8,6 +8,8 @@ function promiseDecorator(func) {
 	};
 }
 
+/* **TEST** */
+
 function test(x, y) {
 	return `${x} ${y}`;
 }
