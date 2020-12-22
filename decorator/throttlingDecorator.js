@@ -1,14 +1,10 @@
 function throttlingDecorator(func, delay = 0) {
 	let isCooldown = false;
-	let saveThis = null;
-	let saveArgs = null;
-	let IS_CALL = false;
+	let lastArg = null;
 
 	return function wrapper(...arg) {
 		if (isCooldown) {
-			IS_CALL = true;
-			saveThis = this;
-			saveArgs = arg;
+			lastArg = arg;
 			return;
 		}
 
@@ -18,9 +14,9 @@ function throttlingDecorator(func, delay = 0) {
 
 		setTimeout(() => {
 			isCooldown = false;
-			if (IS_CALL) {
-				wrapper.apply(saveThis, saveArgs);
-				IS_CALL = false;
+			if (lastArg) {
+				wrapper.apply(this, lastArg);
+				lastArg = null;
 			}
 		}, delay);
 	};
